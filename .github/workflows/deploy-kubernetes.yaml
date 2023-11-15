@@ -18,14 +18,18 @@ jobs:
           # Configure Kind Cluster
 
           kind create cluster --name deploy-k8s
-          kubectl cluster-info --context keploy-k8s
+          kubectl cluster-info --context kind-keploy-k8s
 
       - name: Configure kubectl
         run: |
           
-          kubectl config use-context keploy-k8s
+          kubectl config use-context kind-keploy-k8s
 
       - name: Deploy to Kind Cluster
         run: |
           
-          kubectl apply -f kubernetes/manifesto.yaml 
+          kubectl apply -f kubernetes/pod.yaml -f kubernetes/service.yaml
+      
+      - name: Execute Python app
+        run: |
+          kubectl exec -it deployment/api-guide-deployment --python path/do/seu/codigo.py
