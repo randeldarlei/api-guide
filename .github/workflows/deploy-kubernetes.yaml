@@ -1,0 +1,31 @@
+name: Deploy to Kind Cluster
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Kind
+        run: |
+          # Configure Kind Cluster
+
+          kind create cluster --name deploy-k8s
+          kubectl cluster-info --context keploy-k8s
+
+      - name: Configure kubectl
+        run: |
+          
+          kubectl config use-context keploy-k8s
+
+      - name: Deploy to Kind Cluster
+        run: |
+          
+          kubectl apply -f kubernetes/manifesto.yaml 
