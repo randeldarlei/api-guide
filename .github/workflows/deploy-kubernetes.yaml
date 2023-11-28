@@ -22,7 +22,7 @@ jobs:
 
       - name: Configure kubectl
         run: |
-          
+          echo kubectl config current-context
           kubectl config use-context kind-keploy-k8s
 
       - name: Deploy to Kind Cluster
@@ -32,4 +32,4 @@ jobs:
       
       - name: Execute Python app
         run: |
-          kubectl exec -it deployment/api-guide-deployment --python path/do/seu/codigo.py
+          kubectl exec -it deployment/api-guide-deployment --python /python-api.py
