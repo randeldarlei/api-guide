@@ -23,5 +23,12 @@ def get_total_products():
     response = {'total_products': total_products}
     return jsonify(response)
 
+@app.route('/get_total_stock')
+def get_total_stock():
+    table = pd.read_csv('inventario.csv')
+    total_stock = table['Estoque'].sum()
+    response = {'total_stock': total_stock}
+    return jsonify(response)
+
 # Execute Flask app
 app.run(host='0.0.0.0')
