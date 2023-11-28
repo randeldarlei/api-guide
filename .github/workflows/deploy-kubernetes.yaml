@@ -22,8 +22,10 @@ jobs:
 
       - name: Configure kubectl
         run: |
-          echo kubectl config current-context
-          kubectl config use-context kind-keploy-k8s
+          CURRENT_CONTEXT=$(kubectl config current-context)
+          echo "Current Kubernetes context: $CURRENT_CONTEXT"
+          kubectl config use-context "$CURRENT_CONTEXT"
+
 
       - name: Deploy to Kind Cluster
         run: |
