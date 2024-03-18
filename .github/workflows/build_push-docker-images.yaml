@@ -24,7 +24,7 @@ jobs:
           echo "Docker Access Token: ${{ secrets.DOCKER_ACCESS_TOKEN }}"
 
       - name: Build Docker image
-        run: docker build -t randeldarlei/api-guide .
+        run: docker build -t sickbanger/api-guide .
 
       - name: Push Docker image to Docker Hub
-        run: docker push randeldarlei/api-guide
+        run: docker push sickbanger/api-guide
