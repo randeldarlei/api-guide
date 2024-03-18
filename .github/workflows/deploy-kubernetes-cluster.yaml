@@ -28,7 +28,7 @@ jobs:
       - name: Deploy to Kind Cluster
         run: |
           
-          kubectl apply -f kubernetes/pod.yaml -f kubernetes/service.yaml
+          kubectl apply -f kubernetes/deployment.yaml -f kubernetes/service.yaml
       
       - name: Execute Python app
         run: |
