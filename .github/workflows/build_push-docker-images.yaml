@@ -18,7 +18,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Set Docker image name
-      run: echo "DOCKER_IMAGE_NAME"=$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower]')" >> $GITHUB_ENV
+      run: echo "DOCKER_IMAGE_NAME=$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower]')" >> $GITHUB_ENV
 
     - name: Build Docker image
       run: docker build -t ${{ env.DOCKER_IMAGE_NAME }}.
