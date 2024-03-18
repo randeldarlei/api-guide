@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api-guide
-        image: [docker-image-tag]
+        image: sickbanger/api-guide:latest
         volumeMounts:
         - mountPath: /api-guide
           name: guide-emptydir
