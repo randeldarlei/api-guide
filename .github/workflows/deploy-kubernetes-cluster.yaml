@@ -32,4 +32,4 @@ jobs:
       
       - name: Execute Python app
         run: |
-          kubectl exec -it deployment/api-guide/src --python /python-api.py
+          kubectl exec -it deployment/api-guide -- /bin/bash -c "python /python-api.py"
