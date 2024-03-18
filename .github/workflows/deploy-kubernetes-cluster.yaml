@@ -29,7 +29,3 @@ jobs:
         run: |
           
           kubectl apply -f kubernetes/deployment.yaml -f kubernetes/service.yaml
-      
-      - name: Execute Python app
-        run: |
-          kubectl exec -it deployment/api-guide -- /bin/bash -c "python /python-api.py"
