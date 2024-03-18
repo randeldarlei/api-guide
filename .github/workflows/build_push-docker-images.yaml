@@ -27,4 +27,4 @@ jobs:
         run: docker build -t randeldarlei/api-guide .
 
       - name: Push Docker image to Docker Hub
-        run: docker push ${{ env.DOCKER_IMAGE_NAME }}
+        run: docker push randeldarlei/api-guide
