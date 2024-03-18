@@ -24,8 +24,6 @@ jobs:
           echo "Current Kubernetes context: $CURRENT_CONTEXT"
           kubectl config use-context "$CURRENT_CONTEXT"
 
-
       - name: Deploy to Kind Cluster
         run: |
-          
           kubectl apply -f kubernetes/deployment.yaml -f kubernetes/service.yaml
