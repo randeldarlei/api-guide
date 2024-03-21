@@ -6,9 +6,9 @@ A simple API to gets value from .csv file from in this V1 version.
 
 - Activate .venv enviroment in *src* dir: 
 
-´´´
+```
 source .venv/bin/activate
-´´´
+```
 
 - Execute python app *python-api.py*
 
