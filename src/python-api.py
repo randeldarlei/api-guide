@@ -1,4 +1,5 @@
 import pandas as pd
+import mysql.connector
 from flask import Flask, jsonify
 
 # Init Flask App
