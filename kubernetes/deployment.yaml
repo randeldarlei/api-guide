@@ -14,13 +14,13 @@ spec:
     spec:
       containers:
       - name: api-guide
-        image: sickbanger/api-guide:latest
-        volumeMounts:
-        - mountPath: /api-guide
-          name: guide-emptydir
-        args:
-        - sleep
-        - "1800"
+        image: python:3.11.9-alpine3.19
+        # volumeMounts:
+        # - mountPath: /api-guide
+        #   name: guide-emptydir
+        # args:
+        # - sleep
+        # - "1800"
         resources:
           limits:
             cpu: "1"
@@ -28,9 +28,9 @@ spec:
           requests:
             cpu: "0.5"
             memory: "64Mi"
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      volumes:
-      - name: guide-emptydir
-        emptyDir:
-          sizeLimit: 256Mi
+      # dnsPolicy: ClusterFirst
+      # restartPolicy: Always
+      # volumes:
+      # - name: guide-emptydir
+      #   emptyDir:
+      #     sizeLimit: 256Mi

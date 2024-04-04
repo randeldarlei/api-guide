@@ -1,6 +1,20 @@
 import pandas as pd
 import mysql.connector
 from flask import Flask, jsonify
+from ddtrace import tracer
+
+# Network sockets
+
+tracer.configure(
+    https=False,
+    hostname="custom-hostname",
+    port="5000",
+)
+
+# Unix domain socket configuration
+tracer.configure(
+    uds_path=" /var/run/datadog/apm.socket",
+)
 
 # Init Flask App
 app = Flask(__name__)
