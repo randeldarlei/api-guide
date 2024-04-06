@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api-guide
-        image: python:3.11.9-alpine3.19
+        image: sickbanger/api-guide:2.0
         # volumeMounts:
         # - mountPath: /api-guide
         #   name: guide-emptydir
