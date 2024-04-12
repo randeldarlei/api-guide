@@ -1,23 +1,18 @@
-import pandas as pd
-import mysql.connector
+import os
+import pymysql
 from flask import Flask, jsonify
-from ddtrace import tracer
 
-# Network sockets
-
-tracer.configure(
-    https=False,
-    hostname="custom-hostname",
-    port="5000",
-)
-
-# Unix domain socket configuration
-tracer.configure(
-    uds_path=" /var/run/datadog/apm.socket",
-)
+DB_HOST = 'value'
+DB_USER = 'value'
+DB_PASSWORD = 'value'
+DB_NAME = 'value'
 
 # Init Flask App
 app = Flask(__name__)
+minikube_ip = os.getenv('MINIKUBE_IP')
+
+def connect_database():
+    return pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, database=DB_NAME)
 
 @app.route('/')
 def homepage():
@@ -26,24 +21,13 @@ def homepage():
 # API functons
 @app.route('/sales')
 def get_sales():
-    table = pd.read_csv('inventario.csv')
-    sales = table['Vendas'].sum()
-    response = {'sales' : int(sales)}
-    return jsonify(response)
-
-@app.route('/total_products')
-def get_total_products():
-    table = pd.read_csv('inventario.csv')
-    total_products = table['Produtos'].sum()
-    response = {'total_products' : int(total_products)}
-    return jsonify(response)
-
-@app.route('/total_stock')
-def get_total_stock():
-    table = pd.read_csv('inventario.csv')
-    total_stock = table['Estoque'].sum()
-    response = {'total_stock' : int(total_stock)}
+    connection = connect_database()
+    cursor = connection.cursor
+    cursor.execute("SELECT SUM(Vendas) FROM inventario")
+    sales = cursor.fetchone()[0]
+    connection.close()
+    response = {'sales': int(sales)}
     return jsonify(response)
 
 # Execute Flask app
-app.run(host='0.0.0.0')
+app.run(host='0.0.0.0', port=5000)
