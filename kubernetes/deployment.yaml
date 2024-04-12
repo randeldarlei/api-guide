@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api-guide
-        image: sickbanger/api-guide:2.0
+        image: sickbanger/api-guide:1.2
         # volumeMounts:
         # - mountPath: /api-guide
         #   name: guide-emptydir
